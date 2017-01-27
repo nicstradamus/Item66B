@@ -21,7 +21,7 @@ class start(Frame):
 ##        count = 0
         item66B_func.create_db(self)
         item66B_gui.load_gui(self)
-        
+        self.last_check = item66B_func.lastCheck(self)
 
     
         

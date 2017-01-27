@@ -9,26 +9,29 @@ import item66B_main
 
 def load_gui(self):
 
+    #Source objects
     self.source = StringVar()
     self.source_var = ''
     self.source.set("???")
     self.source_dir = ''
-    
+
+    #Destination objects
     self.destination = StringVar()
     self.destination_var = ''
     self.destination.set("???")
     self.destination_dir = ''
-    
+
+    #Last Check objects
     self.last_check = StringVar()
     self.last_check_var = ''
     self.last_check.set("???")
 
+    #Next Check objects
     self.next_check = StringVar()
     self.next_check_var = ''
     self.next_check.set("???")
 
 
-    self.last_check = item66B_func.lastCheck(self)
 
     #LAST CHECK LABELS
     self.lbl_srch  = ttk.Label(self.master, text = 'Last Run:').pack(pady=(10,0))
