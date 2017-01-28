@@ -27,13 +27,13 @@ def create_db(self):
             );")
         
         conn.commit()
-        print('table created')
     count_records(self,cur)
     if self.count < 1:
-        cur = conn.cursor()
-        cur.execute("INSERT INTO fileCheck (checkTime,srcDir,destDir,modDateTime,createDateTime)\
-                    VALUES(?,?,?,?,?)",(datetime.datetime.now(),'NUll','NUll','NUll','NUll'))
-        conn.commit()
+        self.last_check.set("No records found")
+##        cur = conn.cursor()
+##        cur.execute("INSERT INTO fileCheck (checkTime,srcDir,destDir,modDateTime,createDateTime)\
+##                    VALUES(?,?,?,?,?)",(datetime.datetime.now(),'NUll','NUll','NUll','NUll'))
+##        conn.commit()
         #conn.close()
 
 def count_records(self,cur):
@@ -45,7 +45,6 @@ def count_records(self,cur):
 
 def lastCheck(self):
     conn = sqlite3.connect('Tech66.db')
-    print('lastCheck start')
     with conn:
         cur = conn.cursor()
         #self.last_check = ""
@@ -94,7 +93,7 @@ def move_files(self):
                 shutil.move((os.path.join(self.source_dir,i)),self.destination_dir)
                 self.count = True
                 #create_db(self)
-                first_run(self)
+                log_move(self)
                 
     if self.count == True:
         messagebox.showinfo(title='Success', message = "Files transferred successfully!")
@@ -103,7 +102,8 @@ def move_files(self):
 
 
 
-def first_run(self):
+def log_move(self):
+    self.time_now = datetime.datetime.today()
     conn = sqlite3.connect('Tech66.db')
     
     
@@ -113,8 +113,7 @@ def first_run(self):
                     VALUES(?,?,?,?,?)",(self.time_now,self.source_dir,self.destination_dir,self.diff_mod,self.diff_create))
         conn.commit()
         #conn.close()
-
-
+    self.time_now = time.time()
 
 if __name__ == "__main__":
     pass

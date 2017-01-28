@@ -13,14 +13,14 @@ class start(Frame):
         Frame.__init__(self, master, *args, **kwargs)
         self.master = master
         master.title("File Transfer")
-        self.master.minsize(300,400) #(Height, Width)
-        self.master.maxsize(300,400)
+        self.master.minsize(300,300) #(Height, Width)
+        self.master.maxsize(300,300)
 
 ##        src_files = ''
 ##        dest_path = ''
 ##        count = 0
-        item66B_func.create_db(self)
         item66B_gui.load_gui(self)
+        item66B_func.create_db(self)
         self.last_check = item66B_func.lastCheck(self)
 
     
