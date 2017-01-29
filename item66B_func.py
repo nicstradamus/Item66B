@@ -59,13 +59,15 @@ def lastCheck(self):
 def get_src(self):
     self.source_dir = filedialog.askdirectory()
     self.source_files = (os.listdir(self.source_dir))
-    self.source.set(self.source_dir)
+    if source_dir != '':
+        self.source.set(self.source_dir)
     
 
     
 def get_dest(self):
     self.destination_dir = filedialog.askdirectory()
-    self.destination.set(self.destination_dir)
+    if destination_dir != '' or destination_dir != '???':
+        self.destination.set(self.destination_dir)
 
 #def convert_time(self):
 
